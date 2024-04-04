@@ -12,7 +12,7 @@ export class AppComponent {
   async connect() {
     const vendorId = 0x225D; // Reemplaza con el ID de vendedor real de tu dispositivo
     const productId = 0xC000A; // Reemplaza con el ID de producto real de tu dispositivo
-    const device = await this.usbService.requestDevice(/* vendorId, productId */);
+    const device = await this.usbService.requestDevice(vendorId, productId);
 
     if(!device) alert('Could not get connected devices');
 

@@ -8,13 +8,13 @@ export class UsbService {
 
   constructor() {}
 
-  async requestDevice(/* vendorId: number, productId: number */): Promise<USBDevice | undefined> {
+  async requestDevice(vendorId: number, productId: number): Promise<USBDevice | undefined> {
     try {
       if (!navigator.usb) alert('It does not have USB devices connected');     
       
       // Solicita al usuario que seleccione un dispositivo USB.
       this.device = await navigator.usb.requestDevice({
-        filters: [/* { vendorId, productId } */],
+        filters: [{ vendorId, productId }],
       });
 
       console.log('Device', this.device);
