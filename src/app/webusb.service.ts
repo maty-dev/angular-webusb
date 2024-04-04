@@ -8,16 +8,22 @@ export class UsbService {
 
   constructor() {}
 
-  async requestDevice(vendorId: number, productId: number): Promise<USBDevice | undefined> {
+  async requestDevice(/* vendorId: number, productId: number */): Promise<USBDevice | undefined> {
     try {
+      if (!navigator.usb) alert('It does not have USB devices connected');     
+      
       // Solicita al usuario que seleccione un dispositivo USB.
       this.device = await navigator.usb.requestDevice({
-        filters: [{ vendorId, productId }],
+        filters: [/* { vendorId, productId } */],
       });
+
       console.log('Device', this.device);
       return this.device;
     } catch (error) {
-      console.error('There was an error selecting the device:', error);
+      const messageError: string = `There was an error selecting the device: ' ${error}`;
+      
+      console.error(messageError);
+      alert(messageError)
       return undefined;
     }
   }
@@ -32,11 +38,11 @@ export class UsbService {
       // Abre el dispositivo seleccionado.
       await this.device.open();
       // Selecciona una configuración si el dispositivo no está configurado.
-      if (this.device.configuration === null)
-        await this.device.selectConfiguration(1);
+      await this.device.selectConfiguration(1);
       // Reclama una interfaz para interactuar con el dispositivo.
-      await this.device.claimInterface(0);
-      console.log('Device opened');
+      await this.device.releaseInterface(1);
+
+      alert('Device opened');
       return true;
     } catch (error) {
       console.error('Error opening the device:', error);
@@ -45,14 +51,19 @@ export class UsbService {
   }
 
   async disconnect(): Promise<void> {
-    if (this.device) {
-      try {
-        await this.device.close();
-        this.device = null;
-        console.log('Device closed');
-      } catch (error) {
-        console.error('Error closing the device:', error);
-      }
+    if (!this.device) return;
+
+    try {
+      await this.device.close();
+      this.device = null;
+
+      alert('Device closed');
+    } catch (error) {
+      const messageError: string = `Error closing the device: ' ${error}`
+
+      console.error(messageError);
+      alert(messageError);
     }
+    
   }
 }
