@@ -3,10 +3,7 @@ import { UsbService } from './webusb.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <button (click)="connect()">Connect to USB Device</button>
-    <button (click)="disconnect()">Disconnect</button>
-  `,
+  templateUrl: './app.component.html',
   standalone: true
 })
 export class AppComponent {
@@ -15,13 +12,14 @@ export class AppComponent {
   async connect() {
     const vendorId = 0x225D; // Reemplaza con el ID de vendedor real de tu dispositivo
     const productId = 0xC000A; // Reemplaza con el ID de producto real de tu dispositivo
-    const device = await this.usbService.requestDevice(vendorId, productId);
-    if (device) {
-      const isConnected = await this.usbService.connectToDevice();
-      if (isConnected) {
-        console.log('Device is connected');
-      }
-    }
+    const device = await this.usbService.requestDevice(/* vendorId, productId */);
+
+    if(!device) alert('Could not get connected devices');
+
+    const isConnected: boolean = await this.usbService.connectToDevice();
+    if (!isConnected) return;
+    
+    alert('Device is connected');
   }
 
   async disconnect() {
