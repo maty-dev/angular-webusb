@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { UsbService } from './webusb.service';
+import { BarcodeScanComponent } from './device/barcode-scan/barcode-scan.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  standalone: true
+  standalone: true,
+  imports: [BarcodeScanComponent]
 })
 export class AppComponent {
   constructor(private usbService: UsbService) {}

@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+      <!--   <input type="text" (window:keypress)="onKey($event)"  autofocus /> -->
+
+        <p #scanData>
+            Barcode: 
+            
+            @if (scannedData.length > 1) {
+                {{ scannedData }}
+            }
+        </p>
+    </div>
+</div>
