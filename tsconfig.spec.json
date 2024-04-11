@@ -4,9 +4,11 @@
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
-      "jasmine"
-    ]
+      "jasmine",
+      "./src/app/core/modules/WebSdk"
+    ],
   },
+  "files": ["./src/app/core/modules/WebSdk", "./node_modules/@types"],
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"

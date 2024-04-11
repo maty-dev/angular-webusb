@@ -17,13 +17,19 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "ES6",
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "typeRoots": ["./src/app/core/modules/WebSdk", "./node_modules/@types", "./@types/*"],
+    "allowJs": true,
+    "paths": {
+      "*": [ "./@types/*" ],
+    },
   },
+  "include": ["./src/app/core/modules/WebSdk"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
