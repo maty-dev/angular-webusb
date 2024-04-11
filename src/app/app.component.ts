@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { UsbService } from './webusb.service';
 import { BarcodeScanComponent } from './device/barcode-scan/barcode-scan.component';
 import { FigerprintReaderComponent } from './device/figerprint-reader/figerprint-reader.component';
+import { ThermalPrinterComponent } from './device/thermal-printer/thermal-printer.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [BarcodeScanComponent, FigerprintReaderComponent]
+  imports: [BarcodeScanComponent, FigerprintReaderComponent, ThermalPrinterComponent]
 })
 export class AppComponent {
   constructor(private usbService: UsbService) {}
