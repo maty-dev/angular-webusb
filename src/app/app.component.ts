@@ -1,16 +1,24 @@
 import { Component } from '@angular/core';
 import { UsbService } from './webusb.service';
-import { BarcodeScanComponent } from './device/barcode-scan/barcode-scan.component';
-import { FigerprintReaderComponent } from './device/figerprint-reader/figerprint-reader.component';
-import { ThermalPrinterComponent } from './device/thermal-printer/thermal-printer.component';
+
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [BarcodeScanComponent, FigerprintReaderComponent, ThermalPrinterComponent]
+  imports: [RouterModule]
 })
 export class AppComponent {
+
+  public menuItems = routes
+    .map((route) => route ?? [])
+    .flat()
+    .filter((route) => route && route.path)
+    .filter((route) => !route.path?.includes(':'));
+
+  
   constructor(private usbService: UsbService) {}
 
   async connect() {

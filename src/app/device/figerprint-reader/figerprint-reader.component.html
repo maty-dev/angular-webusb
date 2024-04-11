@@ -1,12 +1,10 @@
 <div class="container">
-    <div class="row">
-        <h2>Fingerprint</h2>
-
+    <div class="row mt-3">
         <div class="row flex spaceButton">
-            <button (click)="getListAllDevices()">Get device</button>
-            <button (click)="startCapture()">Start</button>
-            <button (click)="stopCapture()">Stop</button>
-            <button (click)="captureImage()">Capture</button>
+            <button type="button" class="btn btn-dark" (click)="getListAllDevices()">Get device</button>
+            <button type="button" class="btn btn-dark" (click)="startCapture()">Start</button>
+            <button type="button" class="btn btn-dark" (click)="stopCapture()">Stop</button>
+            <button type="button" class="btn btn-dark" (click)="captureImage()">Capture</button>
         </div>
     </div>
 

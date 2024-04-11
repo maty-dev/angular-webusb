@@ -1,7 +1,17 @@
-<!-- <button (click)="connect()">Connect to USB Device</button>
-<button (click)="disconnect()">Disconnect</button> -->
+<main class="container">
+    <ul class="nav nav-tabs">
+        @for( item of menuItems; track $index  ) {
+            <li class="nav-item">
+                <a
+                  [routerLink]="item.path"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                    {{ item.title }}
+                </a>
+            </li>
+        }
+    </ul>
+</main>
 
-<!-- <app-barcode-scan />
-<app-figerprint-reader /> -->
-
-<app-thermal-printer />
+<router-outlet />
