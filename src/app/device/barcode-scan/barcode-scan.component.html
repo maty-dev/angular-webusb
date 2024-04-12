@@ -1,13 +1,6 @@
 <div class="container">
-    <div class="row">
-      <!--   <input type="text" (window:keypress)="onKey($event)"  autofocus /> -->
-
-        <p #scanData>
-            Barcode: 
-            
-            @if (scannedData.length > 1) {
-                {{ scannedData }}
-            }
-        </p>
+    <div class="row flex mt-3">
+        <label class="form-label" for="scanData">Last Barcode Scan</label>
+        <input [(ngModel)]="lastScanned" type="text" class="form-control" name="scanData" disabled #scanData />
     </div>
 </div>
