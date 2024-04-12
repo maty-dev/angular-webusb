@@ -1,0 +1,4 @@
+picture, button{
+    display: grid;
+    place-items: center;
+}

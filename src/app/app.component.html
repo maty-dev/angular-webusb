@@ -1,2 +1,19 @@
-<button (click)="connect()">Connect to USB Device</button>
-<button (click)="disconnect()">Disconnect</button>
+<main class="container">
+    <h1>Peripherals</h1>
+    
+    <ul class="nav nav-tabs">
+        @for( item of menuItems; track $index  ) {
+            <li class="nav-item">
+                <a
+                  [routerLink]="item.path"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                    {{ item.title }}
+                </a>
+            </li>
+        }
+    </ul>
+</main>
+
+<router-outlet />

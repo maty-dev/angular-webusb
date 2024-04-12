@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="row flex spaceButton">
+            <button type="button" class="btn btn-dark" (click)="getListAllDevices()">Get device</button>
+            <button type="button" class="btn btn-dark" (click)="startCapture()">Start</button>
+            <button type="button" class="btn btn-dark" (click)="stopCapture()">Stop</button>
+            <button type="button" class="btn btn-dark" (click)="captureImage()">Capture</button>
+        </div>
+    </div>
+
+    @if ( currentImgesFinger ) {
+        <div class="row">
+            <img class="fingerprint" src="data:image/jpeg;base64,{{currentImgesFinger}}" alt="fingerprint">
+        </div>  
+    } @else {
+        <div class="row">
+            <p>Here, you can see his capture !!</p>
+        </div>
+    }
+</div>
