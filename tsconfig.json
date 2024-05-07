@@ -23,13 +23,13 @@
       "ES2022",
       "dom"
     ],
-    "typeRoots": ["./src/app/core/modules/WebSdk", "./node_modules/@types", "./@types/*"],
+    "typeRoots": [ "./src/app/core/modules/WebSdk", "./node_modules/@types", "./@types/*"],
     "allowJs": true,
     "paths": {
       "*": [ "./@types/*" ],
     },
   },
-  "include": ["./src/app/core/modules/WebSdk"],
+  "include": ["./src/app/core/modules/WebSdk", "./src/app/core/modules/printer"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

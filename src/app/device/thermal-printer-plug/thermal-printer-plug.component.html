@@ -1,0 +1,12 @@
+<div class="container">
+    <p class="bold row mt-3">Status: {{status}}</p>
+    <section class="row flex mt-3">
+        <input [(ngModel)]="ip" type="text" class="form-control" name="ip" placeholder="IP of printer with WebPRNT">
+    
+        <div class="row flex spaceButton">
+            <button type="button" class="btn btn-dark ml-3" (click)="connectToWebPrint()"> WebPRNT </button>
+            <button type="button" class="btn btn-dark" (click)="requestUsb()"> USB </button>
+            <button type="button" class="btn btn-dark" (click)="print()" [disabled]="status === false"> Print </button>
+        </div>
+    </section>
+</div>

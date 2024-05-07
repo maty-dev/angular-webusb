@@ -1,10 +1,9 @@
 <div class="container">
     <div class="row mt-3">
         <div class="row flex spaceButton">
-            <button type="button" class="btn btn-dark" (click)="getListAllDevices()">Get device</button>
-            <button type="button" class="btn btn-dark" (click)="startCapture()">Start</button>
-            <button type="button" class="btn btn-dark" (click)="stopCapture()">Stop</button>
-            <button type="button" class="btn btn-dark" (click)="captureImage()">Capture</button>
+            <button type="button" class="btn btn-dark" (click)="getListAllDevices()" [disabled]="isInit">Get device</button>
+            <button type="button" class="btn btn-dark" (click)="startCapture()" [disabled]="isStart">Start</button>
+            <button type="button" class="btn btn-dark" (click)="stopCapture()" [disabled]="isStop">Stop</button>
         </div>
     </div>
 

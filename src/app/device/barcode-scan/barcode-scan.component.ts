@@ -10,18 +10,6 @@ import { Observable, Subscription, debounceTime, filter, fromEvent, map, scan, w
   styleUrl: './barcode-scan.component.css'
 })
 export class BarcodeScanComponent implements OnInit, OnDestroy{
-  /* @ViewChild('scanData') scanDataElement!: ElementRef;
-  scannedData: string = '';
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if(event.key === 'Unidentified') event.preventDefault();
-    const scannedValue = event.key;
-
-    this.scannedData = '';
-    this.scannedData += scannedValue;
-  } */
-
   scanned!: Observable<string>;
   lastScanned: string = 'Here, you can see his scan !!';
   suscriptionScanned!: Subscription;
@@ -29,10 +17,16 @@ export class BarcodeScanComponent implements OnInit, OnDestroy{
   constructor() {}
 
   ngOnInit() {
-    const down = fromEvent<KeyboardEvent>(document, 'keydown');
-    const up = fromEvent<KeyboardEvent>(document, 'keyup');
+    const down: Observable<KeyboardEvent> = fromEvent<KeyboardEvent>(document, 'keydown');
+    const up: Observable<KeyboardEvent> = fromEvent<KeyboardEvent>(document, 'keyup');
 
     const scannerKeys = up.pipe(
+      map((event: KeyboardEvent) => {
+        console.log( event );
+        if(event.key === 'Unidentified') event.preventDefault();
+       // Here you can implement logic to process different types of inputs, such as QR codes, images, maps, URLs, etc.
+        return event; // For example, here we are scanning the pressed key.
+      }),
       filter((e: KeyboardEvent) => e.code !== 'ShiftLeft'),
       withLatestFrom(down, (u: KeyboardEvent, d: KeyboardEvent) => ({
         key: `${d.key}`,
@@ -45,7 +39,7 @@ export class BarcodeScanComponent implements OnInit, OnDestroy{
     this.scanned = scannerKeys.pipe(
       scan((acc, value) => {
         const key = value.key;
-
+      
         if (key !== 'Enter') {
           this.lastScanned = acc + key;
           return acc + key;
@@ -57,21 +51,6 @@ export class BarcodeScanComponent implements OnInit, OnDestroy{
       }, ''),
       filter((x) => x !== ''),
       debounceTime(50)
-    );
-
-    const scannerInput: Observable<KeyboardEvent> = fromEvent<KeyboardEvent>(document, 'keydown');
-
-    this.scanned = scannerInput.pipe(
-      map((event: KeyboardEvent) => {
-        console.log( event );
-       // Here you can implement logic to process different types of inputs, such as QR codes, images, maps, URLs, etc.
-        return event.key; // For example, here we are scanning the pressed key.
-      }),
-      scan((acc: string, value: string) => {
-        // Here you can implement the logic to accumulate and handle the scanned data.
-        return acc + value;
-      }, ''),
-      debounceTime(50) // Add a timeout to prevent excessive event processing.
     );
 
     this.suscriptionScanned = this.scanned.subscribe((scannedCode) => {
