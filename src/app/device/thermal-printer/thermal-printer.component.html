@@ -1,5 +1,45 @@
 <div class="container">
-    <div class="row flex mt-3">
-        <button type="button" class="btn btn-dark" (click)="onPrint()">Print</button>
-    </div>
+    <section class="printer">
+        <article class="row mt-3 d-print-block">
+            <h2>Greetings Deivid, from the Devs Adviters team in Argentina !!</h2>
+            <p>Date: {{ date }}</p>
+    
+            <div class="grid4Col">
+              <div><strong class="textRight">Item</strong></div>
+              <div class="textRight"><strong>Amount</strong></div>
+              <div class="textRight"><strong>Price</strong></div>
+              <div class="textRight"><strong>Total</strong></div>
+              
+              <div class="gridBorder gridBorderDouble"></div>
+              
+              <div class="maxLine2">Srv 1</div>
+              <div class="textRight">1</div>
+              <div class="textRight">$10</div>
+              <div class="textRight">$10</div>
+              
+              <div class="maxLine2">Srv 2</div>
+              <div class="textRight">2</div>
+              <div class="textRight">$10</div>
+              <div class="textRight">$20</div>
+              
+              <div class="gridBorder gridBorderSolid"></div>
+              
+              <div class="colSpan3 maxLine2">
+                <strong>Total</strong>
+              </div>
+              
+              <div class="textRight"><strong>$30</strong></div>
+            </div>
+    
+            <picture>
+              <img src="assets/example-image.png" with="100" height="100" alt="angular" />
+            </picture>
+    
+            <p>Thank you very much for purchasing.</p>
+        </article> 
+    
+        <div class="row flex mt-3 d-print-none">
+            <button type="button" class="btn btn-dark" (click)="onPrint()">Print</button>
+        </div>
+    </section>
 </div>

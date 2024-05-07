@@ -2,3 +2,91 @@ picture, button{
     display: grid;
     place-items: center;
 }
+
+.printer {
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+    width: 58mm;
+}
+
+article {
+    margin: 0;
+    padding: 8px;
+}
+
+h2, p {
+    text-align: center;
+}
+
+.singleLine {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    white-space: pre-wrap;
+}
+
+.printAreaContainer {
+    padding: 8px;
+}
+
+.fontMono {
+    font-family: monospace;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.textRight {
+    text-align: right;
+}
+
+.textLeft {
+    text-align: left;
+}
+
+.fontBold {
+    font-weight: bold;
+}
+
+.grid4Col {
+    display: grid;
+    column-gap: 5px;
+    grid-template-columns: 1fr auto auto auto;
+}
+
+.gridBorderSolid {
+    border-bottom: 1px solid;
+}
+
+.gridBorderDashed {
+    border-bottom: 1px dashed;
+}
+
+.gridBorderDouble {
+    border-bottom: 3px double;
+}
+
+.gridBorder {
+    grid-column: 1 / -1;
+    margin: 4px 0;
+}
+
+.nowrap {
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+.colSpan3 {
+    grid-column: span 3 / span 3;
+}
+
+.maxLine2 {
+    max-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}

@@ -12,11 +12,11 @@ import {
 import "../../core/modules/WebSdk";
 
 @Component({
-  selector: 'app-figerprint-reader',
+  selector: 'app-fingerprint-reader',
   standalone: true,
   imports: [],
-  templateUrl: './figerprint-reader.component.html',
-  styleUrl: './figerprint-reader.component.css'
+  templateUrl: './fingerprint-reader.component.html',
+  styleUrl: './fingerprint-reader.component.css'
 })
 export class FigerprintReaderComponent implements OnInit, OnDestroy {
   private reader!: FingerprintReader;
@@ -25,6 +25,10 @@ export class FigerprintReaderComponent implements OnInit, OnDestroy {
  /*  public infoFingerprintReader!: any; */
   public infoSamplesFingerprintReader!: any;
   public currentImgesFinger!: any;
+
+  public isInit: boolean = false;
+  public isStart: boolean = true;
+  public isStop: boolean = true;
 
   private onDeviceConnected = ( event: DeviceConnected ) => {};
   private onDeviceDisconnected = ( event: DeviceDisconnected ) => {};
@@ -42,7 +46,9 @@ export class FigerprintReaderComponent implements OnInit, OnDestroy {
   private onSamplesAcquired = ( event: SamplesAcquired ) => {
     console.log( 'Samples Acquired' );
     console.log( event );
+
     this.infoSamplesFingerprintReader = event;
+    this.captureImage();
   }
 
   public methodsReader: { name: string, func: any }[] = [
@@ -86,6 +92,9 @@ export class FigerprintReaderComponent implements OnInit, OnDestroy {
 
       console.log(this.listFingerprintReader);
       alert( 'Selected device. The capture can now begin.' );
+
+      this.isInit = true;
+      this.isStart = false;
     })
     .catch((error) => {
       console.error(error);
@@ -97,6 +106,9 @@ export class FigerprintReaderComponent implements OnInit, OnDestroy {
     .then( (result: any) => {
       alert( 'You can init sart capturing !' );
       console.log( result );
+
+      this.isStart = true;
+      this.isStop = false;
     })
     .catch((error) => {
       console.error(error);
@@ -108,19 +120,23 @@ export class FigerprintReaderComponent implements OnInit, OnDestroy {
     .then( (result: any) => {
       alert( 'You can init stop capturing !' );
       console.log( result );
+
+      this.isInit = false;
+      this.isStart = true;
+      this.isStop = true;
     })
     .catch((error) => {
       console.error(error);
     });
   }
 
-  captureImage() {
+  private captureImage() {
     const listImages = this.infoSamplesFingerprintReader['samples'];
     const lengthSize = Object.keys( listImages ).length;
 
     if( !listImages || lengthSize <= 0 ) return; 
-    /* this.currentImgesFinger = this.getFormatImage( listImages[0] );  */
-    this.currentImgesFinger = listImages[0]; 
+    this.currentImgesFinger = this.getFormatImage( listImages[0] ); 
+    /* this.currentImgesFinger = listImages[0];  */
   }
 
   getFormatImage( codeBase64: string ) {

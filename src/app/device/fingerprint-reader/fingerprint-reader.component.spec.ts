@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FigerprintReaderComponent } from './figerprint-reader.component';
+import { FigerprintReaderComponent } from './fingerprint-reader.component';
 
 describe('FigerprintReaderComponent', () => {
   let component: FigerprintReaderComponent;

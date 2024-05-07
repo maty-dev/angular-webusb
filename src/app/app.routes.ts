@@ -2,9 +2,14 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
-        path: 'fingerprint-reader',
-        title: 'Fingerprint Reader | Owner - DigitalPersona',
-        loadComponent: () => import('./device/figerprint-reader/figerprint-reader.component').then( m => m.FigerprintReaderComponent ),
+        path: 'fingerprint-morpho',
+        title: 'Fingerprint Morpho | Owner',
+        loadComponent: () => import('./device/fingerprint-morpho/fingerprint-morpho.component').then( m => m.FingerprintMorphoComponent ),
+    },
+    {
+        path: 'fingerprint-dpersona',
+        title: 'Fingerprint DigitalPersona | Owner',
+        loadComponent: () => import('./device/fingerprint-reader/fingerprint-reader.component').then( m => m.FigerprintReaderComponent ),
     },
     {
         path: 'thermal-printer',
@@ -12,19 +17,24 @@ export const routes: Routes = [
         loadComponent: () => import('./device/thermal-printer/thermal-printer.component').then( m => m.ThermalPrinterComponent ),
     },
     {
+        path: 'thermal-plug',
+        title: 'Thermal Printer | Plug',
+        loadComponent: () => import('./device/thermal-printer-plug/thermal-printer-plug.component').then( m => m.ThermalPrinterPlugComponent ),
+    },
+    {
         path: 'barcacode-scan',
-        title: 'Barcacode Scan | Generic (Uni & Bidirectional)',
+        title: 'Barcacode Scan | Generic (Uni & Bi)',
         loadComponent: () => import('./device/barcode-scan/barcode-scan.component').then( m => m.BarcodeScanComponent ),
     },
 
     {
         path: '',
-        redirectTo: 'fingerprint-reader',
+        redirectTo: 'fingerprint-morpho',
         pathMatch: 'full'
     },  
     {
         path: '**',
-        redirectTo: 'fingerprint-reader',
+        redirectTo: 'fingerprint-morpho',
         pathMatch: 'full'
     } 
 ];
